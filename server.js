@@ -7,6 +7,11 @@ var person = {
 	"name":"Britton Stanfill"
 };
 
+var dbName = 'stacktrack';
+var dbUser = 'root';
+var dbPassword = null;
+
+
 
 var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 	"host":"localhost"
