@@ -1,36 +1,21 @@
 var Sequelize = require('sequelize');
 var express = require('express');
 var app = express();
-
-var person =	{
-				"name":"Britton Stanfill",
-				"location":"Provo, UT",
-				"hobbies": [
-							'soccer', 'design', 'coding'],
-				"occupations": [
-								"Frontend Developer and Designer", 
-								"Lead UX Designer",
-								"Multimedia Intern", 
-								"Designer and Webmaster", 
-								"Lead Videographer",
-								"QA Tester", 
-								"Associate Producer and Designer" 
-								],
-				"mentions": [	],
-				"friends":[],
-				"skills": [
-				{
-					"id":4,
-					"name": 'JavaScript',
-					"experience": 'Intermediate'
-				}
-				]
-
-				};
-
-
-var app = express();
 var port = 3000;
+
+var person = {
+	"name":"Britton Stanfill"
+};
+
+
+var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
+	"host":"localhost"
+});  //creating an instance of the sequelize object.
+
+
+
+sequelize.sync();
+
 
 app.configure(function(){
 	app.use(express.bodyParser());
@@ -43,8 +28,6 @@ app.configure(function(){
 });
 
 	// GET Requests 
-
-
 
 app.listen(port);
 console.log('Server running at ' + port);
