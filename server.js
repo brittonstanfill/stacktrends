@@ -3,10 +3,6 @@ var express = require('express');
 var app = express();
 var port = 3000;
 
-var person = {
-	"name":"Britton Stanfill"
-};
-
 var dbName = 'stacktrack';
 var dbUser = 'root';
 var dbPassword = null;
@@ -17,6 +13,13 @@ var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 	"host":"localhost"
 });  //creating an instance of the sequelize object.
 
+var framework = sequelize.define('framework_data',{
+	name: Sequelize.STRING,
+	question_number: Sequelize.INTEGER,
+	forks_count: Sequelize.INTEGER,
+	watchers_count: Sequelize.INTEGER,
+	updated_at: Sequelize.DATE
+})
 
 
 sequelize.sync();
