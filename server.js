@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var port = 3000;
 
-var dbName = 'framework_info';
+var dbName = 'frametest';
 var dbUser = 'root';
 var dbPassword = 'root';
 
@@ -13,13 +13,18 @@ var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 	"host":"localhost"
 });  //creating an instance of the sequelize object.
 
-var framework = sequelize.define('framework_test', {
+var Framework = sequelize.define('framework_test', {
 	name: Sequelize.STRING,
 	fork_count: Sequelize.INTEGER
 },
 {
 	freezeTableName:true
 });
+
+var testframe = new Framework({
+	name: 'jQuery',
+	fork_count:'105232'
+})
 
 
 sequelize.sync();
