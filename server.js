@@ -13,7 +13,7 @@ var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 	"host":"localhost"
 });  //creating an instance of the sequelize object.
 
-var frameWork = sequelize.define('framework_test', {
+var framework = sequelize.define('framework_test', {
 	name: Sequelize.STRING,
 	fork_count: Sequelize.INTEGER
 },
