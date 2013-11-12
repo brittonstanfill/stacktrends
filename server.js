@@ -49,16 +49,16 @@ app.get('/', function(req, res){
 	  var apiResponse = res['items'];
 	  console.log(res);
 
-		// var output = '';
+		var output = '';
 
-		// for (var i=0; i<apiResponse['items'].length; i++){
-		//     var bit = apiResponse['items'][i];
-		//     output += '[name: "' + bit['name'] +
-		//         '", updated: "' + bit['updated_at'] +
-		//         '", fork: "' + bit['forks_count'] +
-		//         ']\n';
-		// };
-		// alert(output);
+		for (var i=0; i<apiResponse['items'].length; i++){
+		    var bit = apiResponse['items'][i];
+		    output += '[name: "' + bit['name'] +
+		        '", updated: "' + bit['updated_at'] +
+		        '", fork: "' + bit['forks_count'] +
+		        ']\n';
+		};
+		alert(output);
 
 
 
