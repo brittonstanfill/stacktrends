@@ -46,7 +46,7 @@ app.get('/', function(req, res){
 
 	https.get("https://api.github.com/search/repositories?q=forks:>=5000&items.[0]=name", function(res) {
 	  console.log("Got response: " + res.statusCode);
-	  var apiResponse = res['items'];
+	  var apiResponse = res;
 	  console.log(res);
 
 		var output = '';
