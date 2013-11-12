@@ -3,6 +3,7 @@ var express = require('express');
 var https = require('https');
 var http = require("http");
 
+
 var app = express();
 
 var clientApi = require('my_modules/clientApi');
@@ -38,42 +39,48 @@ Framework.create({
 
 sequelize.sync();
 
+//  serverApi 
+app.use(express.bodyParser());
 
-	// I have just recently read that this is not needed if you are using express
-	// app.configure(function(){
-	// 	app.use(express.bodyParser());
-	// 	app.use(function(response, request, next){
-	// 		response.header('Access-Control-Allow-Origin', '*');
-	// 		response.header('Access-Control-Allow-Methods','Options');
-	// 		response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	// 		next();
-	// 	});
-	// });
+app.get('/', function(req, res){
+
+	https.get("https://api.github.com/search/repositories?q=forks:>=5000&items.[0]=name", function(res) {
+	  console.log("Got response: " + res.statusCode);
+	  var apiResponse = res['items'];
+	  console.log(res);
+
+		// var output = '';
+
+		// for (var i=0; i<apiResponse['items'].length; i++){
+		//     var bit = apiResponse['items'][i];
+		//     output += '[name: "' + bit['name'] +
+		//         '", updated: "' + bit['updated_at'] +
+		//         '", fork: "' + bit['forks_count'] +
+		//         ']\n';
+		// };
+		// alert(output);
 
 
-// app.get('/', function(req, res){
 
-// 	https.get("https://api.github.com/search/repositories?q=angular&sort=stars&order=desc", function(res) {
-// 	  console.log("Got response: " + res.statusCode);
-// 	  var apiResponse = res;
 
-// 	  console.log(apiResponse);
+		}).on('error', function(e) {
+	  	console.log("Got error: " + e.messag);
+	});
 
-// 		}).on('error', function(e) {
-// 	  	console.log("Got error: " + e.messag);
-// 	});
+    res.send('completed get request');
+    console.log('we hitting get');
+});
 
-//     res.send('completed get request');
-//     console.log('are we hitting get');
-// });
+
+
+
+
+
 
 
 
 clientApi();
 serverApi();
-
-
-
 
 app.listen(port);
 console.log('Server running at ' + port);
