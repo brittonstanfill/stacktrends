@@ -1,7 +1,9 @@
 var Sequelize = require('sequelize');
 var express = require('express');
-var https = require('https');
-var http = require("http");
+var request = require('request');
+
+// var https = require('https');
+// var http = require("http");
 
 
 var app = express();
@@ -44,21 +46,25 @@ app.use(express.bodyParser());
 
 app.get('/', function(req, res){
 
-	https.get("https://api.github.com/search/repositories?q=forks:>=5000&items.[0]=name", function(res) {
-	  console.log("Got response: " + res.statusCode);
-	  var apiResponse = res;
-	  console.log(res);
+	request("https://api.github.com/search/repositories?q=forks:>=5000", function(error, response, body) {
+	  var apiResponse = body;
+	  console.log("Got response: " + body);
+	  // var apiResponse = res;
+	  // console.log(res);
 
-		var output = '';
 
-		for (var i=0; i<apiResponse['items'].length; i++){
-		    var bit = apiResponse['items'][i];
-		    output += '[name: "' + bit['name'] +
-		        '", updated: "' + bit['updated_at'] +
-		        '", fork: "' + bit['forks_count'] +
-		        ']\n';
-		};
-		alert(output);
+
+
+		// var output = '';
+
+		// for (var i=0; i<apiResponse['items'].length; i++){
+		//     var bit = apiResponse['items'][i];
+		//     output += '[name: "' + bit['name'] +
+		//         '", updated: "' + bit['updated_at'] +
+		//         '", fork: "' + bit['forks_count'] +
+		//         ']\n';
+		// };
+		// alert(output);
 
 
 
