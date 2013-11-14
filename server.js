@@ -58,7 +58,7 @@ sequelize.sync();
 	});
 });
 
-app.get('/',function(request,response){
+app.get('/api-forks',function(request,response){
 
 	Framework.all().success(function(frameworks) {
 		response.send(frameworks);
