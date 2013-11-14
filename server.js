@@ -8,8 +8,8 @@ var request = require('request');
 
 var app = express();
 
-var clientApi = require('my_modules/clientApi');
-var serverApi = require('my_modules/serverApi');
+// var clientApi = require('my_modules/clientApi');
+// var serverApi = require('my_modules/serverApi');
 
 
 
@@ -26,23 +26,19 @@ var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 
 var Framework = sequelize.define('Framework', {
 	name: Sequelize.STRING,
-	fork_count: Sequelize.INTEGER,
-	references: Sequelize.INTEGER
+	forks_count: Sequelize.INTEGER
 },
 {
 	freezeTableName:true
 });
 
-Framework.create({
-	name:'test',
-	fork_count:1021,
-	references:12412
-});
 
-sequelize.sync();
 
 //  serverApi 
+// Stuff is still working
+
 app.use(express.bodyParser());
+
 
 app.get('/', function(req, res){
 
@@ -54,22 +50,21 @@ app.get('/', function(req, res){
 	  // var apiResponse = res;
 	  // console.log(res);
 
-
-
- 
-		var output = '';
-
 		for (var i=0; i<apiResponse['items'].length; i++){
 		    var bit = apiResponse['items'][i];
-		    output += '[name: "' + bit['name'] +
-		        '", updated: "' + bit['updated_at'] +
-		        '", fork: "' + bit['forks_count'] +
-		        ']\n';
+		    Framework.create({
+		    	name: bit['name'],
+		    	forks_count:bit['forks_count']
+		    });
 		};
-		console.log(output);
 
 
+			// Framework.create({
+			// 	name:'test',
+			// 	fork_count:1021
+			// });
 
+sequelize.sync();
 
 		// }).on('error', function(e) {
 	 //  	console.log("Got error: " + e.messag);
@@ -79,16 +74,11 @@ app.get('/', function(req, res){
     // console.log('we hitting get');
 });
 
+		    	  // updated: "' + bit['updated_at'] +'", 
 
 
-
-
-
-
-
-
-clientApi();
-serverApi();
+// clientApi();
+// serverApi();
 
 app.listen(port);
 console.log('Server running at ' + port);
