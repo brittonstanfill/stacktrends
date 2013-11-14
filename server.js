@@ -34,21 +34,16 @@ var Framework = sequelize.define('Framework', {
 
 
 
-//  serverApi 
-// Stuff is still working
 
 app.use(express.bodyParser());
 
 
-app.get('/', function(req, res){
+app.get('/latest', function(req, res){
 
 	request("https://api.github.com/search/repositories?q=forks:>=5000", function(error, response, body) {
 		var apiResponse = JSON.parse(body);
 		console.log(apiResponse.total_count);
 
-
-	  // var apiResponse = res;
-	  // console.log(res);
 
 		for (var i=0; i<apiResponse['items'].length; i++){
 		    var bit = apiResponse['items'][i];
@@ -58,27 +53,19 @@ app.get('/', function(req, res){
 		    });
 		};
 
-
-			// Framework.create({
-			// 	name:'test',
-			// 	fork_count:1021
-			// });
-
 sequelize.sync();
 
-		// }).on('error', function(e) {
-	 //  	console.log("Got error: " + e.messag);
 	});
-
-    // res.send('completed get request');
-    // console.log('we hitting get');
 });
 
-		    	  // updated: "' + bit['updated_at'] +'", 
+app.get('/',function(request,response){
 
+	Framework.all().success(function(frameworks) {
+		response.send(frameworks);
+	});
 
-// clientApi();
-// serverApi();
+});
+
 
 app.listen(port);
 console.log('Server running at ' + port);
