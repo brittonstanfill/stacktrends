@@ -3,15 +3,17 @@
 	<head>
 		<title>StackTrend</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script
-		<script type="text/javascript" src="angular-resource.min.js"></script
+		<script type="text/javascript" src="angular-resource.min.js"></script>
+		<script type="text/javascript" src="stackTrendController.js"></script>
+
 	</head>
 <body ng-controller="stackTrendController">
 
 	<h1>This is a test</h1>
 	<div >
 			<ul>
-				<li ng-repeat="forks in framework_forks">
-					<p>test {{forks}}</p>
+				<li ng-repeat="fork in framework_forks">
+					<p>test {{fork}}</p>
 				</li>
 			</ul>
 	</div>
