@@ -59,7 +59,6 @@ sequelize.sync();
 });
 
 app.get('/api-forks',function(request,response){
-
 	Framework.all().success(function(frameworks) {
 		response.send(frameworks);
 	});

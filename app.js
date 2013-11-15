@@ -1,1 +1,1 @@
-var app = angular.module('stackTrend',[]);
+var app = angular.module('stackTrend',['ngResource']);
