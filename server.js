@@ -7,7 +7,7 @@ var request = require('request');
 
 var app = express();
 
-
+app.use(express.bodyParser());
 app.use(function(req, res, next){
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
@@ -39,9 +39,6 @@ var Framework = sequelize.define('Framework', {
 {
 	freezeTableName:true
 });
-
-app.use(express.bodyParser());
-
 
 app.get('/latest', function(req, res){
 
