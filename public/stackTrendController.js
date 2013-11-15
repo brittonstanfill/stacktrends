@@ -14,7 +14,7 @@ app.controller('stackTrendController', function($scope, $http, $resource){
 
 	$http.defaults.useXDomain = true;
 	var framework_forks = $resource('http\\://localhost\\:3000/api-forks');
-	$scope.myThing = framework_forks.get();
+	$scope.framework_forks = framework_forks.get();
 
 
 	// $scope.framework_forks = framework_forks;
