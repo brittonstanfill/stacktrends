@@ -1,7 +1,12 @@
 app.controller('stackTrendController', function($scope, $http, $resource){
 
+    $scope.hello = "Hello, World!";
+
 	var framework_forks = $resource('/api-forks');
 	$scope.framework_forks = framework_forks;
+
+
+
 });
 
 
