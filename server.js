@@ -5,13 +5,13 @@ var request = require('request');
 // var https = require('https');
 // var http = require("http");  // I am now using request to handle these instead.
 
-
 var app = express();
+
+app.use(express.static(__dirname + '/public'));
+
 
 // var clientApi = require('my_modules/clientApi');
 // var serverApi = require('my_modules/serverApi');
-
-
 
 var port = 3000;
 
@@ -55,7 +55,7 @@ sequelize.sync();
 	});
 });
 
-app.get('http://localhost:3000/api-forks',function(request,response){
+app.get('/api-forks',function(request,response){
 	Framework.all().success(function(frameworks) {
 		response.send(frameworks);
 	});
@@ -63,6 +63,7 @@ app.get('http://localhost:3000/api-forks',function(request,response){
 });
 
 
+
+
 app.listen(port);
 console.log('Server running at ' + port);
-
