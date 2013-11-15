@@ -32,9 +32,6 @@ var Framework = sequelize.define('Framework', {
 	freezeTableName:true
 });
 
-
-
-
 app.use(express.bodyParser());
 
 
@@ -58,7 +55,7 @@ sequelize.sync();
 	});
 });
 
-app.get('/api-forks',function(request,response){
+app.get('http://localhost:3000/api-forks',function(request,response){
 	Framework.all().success(function(frameworks) {
 		response.send(frameworks);
 	});
