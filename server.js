@@ -47,24 +47,33 @@ app.get('/latest', function(req, res){
 		console.log(apiResponse.total_count);
 
 
-		for (var i=0; i<apiResponse['items'].length; i++){
-		    var bit = apiResponse['items'][i];
-		    Framework.create({
-		    	name: bit['name'],
-		    	forks_count:bit['forks_count']
-		    });
-		};
+  for (var i=0; i<apiResponse['items'].length; i++){
+    var bit = apiResponse['items'][i];
+    Framework.create({
+    name: bit['name'],
+    forks_count:bit['forks_count']
+    });
+  };
 
 sequelize.sync();
 
 	});
 });
 
+// app.get('/api-forks',function(request,response){
+// 	Framework.findAll ({
+// 		where: {name: ['node','jquery','bootstrap']}}).success(function(frameworks) {
+// 		response.send(frameworks);
+// 	});
+// });
+
 app.get('/api-forks',function(request,response){
-	Framework.all().success(function(frameworks) {
+	sequelize.query("SELECT name, min(forks_count),max(forks_count) FROM `Framework` GROUP BY name ORDER BY max(forks_count) DESC").success(function(frameworks) {
 		response.send(frameworks);
+      console.log(frameworks);
 	});
 });
+
 
 
 app.listen(port);

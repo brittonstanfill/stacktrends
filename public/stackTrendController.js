@@ -17,9 +17,8 @@ app.controller('stackTrendController', function($scope, $http, $resource){
     var forks = framework_forks.query(function() {
         $scope.framework_forks = forks;
         
-        $scope.apply();
+        // $scope.apply();
     });
-
 
 
 	// $http.defaults.useXDomain = true;

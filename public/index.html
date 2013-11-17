@@ -6,17 +6,18 @@
 		<script type="text/javascript" src="angular-resource.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript" src="stackTrendController.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	</head>
 <body ng-controller="stackTrendController">
 {{hello}}
 	<h1>This is a test</h1>
 	<div >
-			<ul>
+			<ol>
 				<li ng-repeat="fork in framework_forks">
-					<p>test {{fork}}</p>
+					<p>{{fork.name}} : {{fork['min(forks_count)']}}</p>
 				</li>
-			</ul>
+			</ol>
 	</div>
 </body>
 </html>
+
