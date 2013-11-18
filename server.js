@@ -75,25 +75,96 @@ app.get('/api-forks',function(request,response){
 
 // Languages 
 
-var Language = sequelize.define('Language', {
-  name: Sequelize.STRING,
-  total_count: Sequelize.INTEGER
+// var Language = sequelize.define('Language', {
+//   name: Sequelize.STRING,
+//   total_count: Sequelize.INTEGER
+// },
+// {
+//   freezeTableName:true
+// });
+
+
+// app.get('/allLanguages', function(req, res){
+
+//   request("https://api.github.com/search/repositories?q=language:javascript", function(error, response, body) {
+//     var apiResponse = JSON.parse(body);
+//     // console.log(apiResponse.total_count);
+
+//     var bit = apiResponse;
+//     Language.create({
+//     name: 'Javascript',
+//     total_count:bit['total_count']
+//     });
+//   });
+
+//   request("https://api.github.com/search/repositories?q=language:php", function(error, response, body) {
+//     var apiResponse = JSON.parse(body);
+
+//     var bit = apiResponse;
+//     Language.create({
+//     name: 'PHP',
+//     total_count:bit['total_count']
+//     });
+//   });
+
+//   request("https://api.github.com/search/repositories?q=language:ruby", function(error, response, body) {
+//     var apiResponse = JSON.parse(body);
+
+//     var bit = apiResponse;
+//     Language.create({
+//     name: 'Ruby',
+//     total_count:bit['total_count']
+//     });
+//   });
+
+//   request("https://api.github.com/search/repositories?q=language:python", function(error, response, body) {
+//     var apiResponse = JSON.parse(body);
+
+//     var bit = apiResponse;
+//     Language.create({
+//     name: 'Python',
+//     total_count:bit['total_count']
+//     });
+//   });
+
+//   request("https://api.github.com/search/repositories?q=language:java", function(error, response, body) {
+//     var apiResponse = JSON.parse(body);
+
+//     var bit = apiResponse;
+//     Language.create({
+//     name: 'Java',
+//     total_count:bit['total_count']
+//     });
+//   });
+
+//   sequelize.sync();
+
+// });
+
+// app.get('/languages',function(request,response){
+//   sequelize.query("SELECT name, min(total_count),max(total_count) FROM `Language` GROUP BY name ORDER BY max(total_count) DESC").success(function(languages) {
+//     response.send(languages);
+//   });
+// });
+
+var LanguageGraph = sequelize.define('LanguageGraph', {
+  label: Sequelize.STRING,
+  value: Sequelize.INTEGER
 },
 {
   freezeTableName:true
 });
 
 
-app.get('/allLanguages', function(req, res){
+app.get('/allLanguagesGraph', function(req, res){
 
   request("https://api.github.com/search/repositories?q=language:javascript", function(error, response, body) {
     var apiResponse = JSON.parse(body);
-    // console.log(apiResponse.total_count);
 
     var bit = apiResponse;
-    Language.create({
-    name: 'Javascript',
-    total_count:bit['total_count']
+    LanguageGraph.create({
+    label: 'Javascript',
+    value:bit['total_count']
     });
   });
 
@@ -101,9 +172,9 @@ app.get('/allLanguages', function(req, res){
     var apiResponse = JSON.parse(body);
 
     var bit = apiResponse;
-    Language.create({
-    name: 'PHP',
-    total_count:bit['total_count']
+    LanguageGraph.create({
+    label: 'PHP',
+    value:bit['total_count']
     });
   });
 
@@ -111,9 +182,9 @@ app.get('/allLanguages', function(req, res){
     var apiResponse = JSON.parse(body);
 
     var bit = apiResponse;
-    Language.create({
-    name: 'Ruby',
-    total_count:bit['total_count']
+    LanguageGraph.create({
+    label: 'Ruby',
+    value:bit['total_count']
     });
   });
 
@@ -121,9 +192,9 @@ app.get('/allLanguages', function(req, res){
     var apiResponse = JSON.parse(body);
 
     var bit = apiResponse;
-    Language.create({
-    name: 'Python',
-    total_count:bit['total_count']
+    LanguageGraph.create({
+    label: 'Python',
+    value:bit['total_count']
     });
   });
 
@@ -131,9 +202,9 @@ app.get('/allLanguages', function(req, res){
     var apiResponse = JSON.parse(body);
 
     var bit = apiResponse;
-    Language.create({
-    name: 'Java',
-    total_count:bit['total_count']
+    LanguageGraph.create({
+    label: 'Java',
+    value:bit['total_count']
     });
   });
 
@@ -141,17 +212,20 @@ app.get('/allLanguages', function(req, res){
 
 });
 
-app.get('/languages',function(request,response){
-  sequelize.query("SELECT name, min(total_count),max(total_count) FROM `Language` GROUP BY name ORDER BY max(total_count) DESC").success(function(languages) {
-    response.send(languages);
-  });
-});
-
-// app.get('/languagesBar',function(request,response){
-//   sequelize.query("SELECT * FROM Language").success(function(languages) {
+// app.get('/languages',function(request,response){
+//   sequelize.query("SELECT name, min(total_count),max(total_count) FROM `Language` GROUP BY name ORDER BY max(total_count) DESC").success(function(languages) {
 //     response.send(languages);
 //   });
 // });
+
+
+
+
+app.get('/languagesBar',function(request,response){
+  sequelize.query("SELECT DISTINCT label, value FROM LanguageGraph;").success(function(languages) {
+    response.send(languages);
+  });
+});
 
 
 // Graph
