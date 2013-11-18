@@ -139,15 +139,7 @@ app.get('/allLanguages', function(req, res){
 
   sequelize.sync();
 
-
 });
-
-
-// app.get('/languages',function(request,response){
-//   sequelize.query("SELECT * FROM Language").success(function(languages) {
-//     response.send(languages);
-//   });
-// });
 
 app.get('/languages',function(request,response){
   sequelize.query("SELECT name, min(total_count),max(total_count) FROM `Language` GROUP BY name ORDER BY max(total_count) DESC").success(function(languages) {
@@ -155,6 +147,34 @@ app.get('/languages',function(request,response){
   });
 });
 
+// app.get('/languagesBar',function(request,response){
+//   sequelize.query("SELECT * FROM Language").success(function(languages) {
+//     response.send(languages);
+//   });
+// });
+
+
+// Graph
+
+// app.get('/languagesBar',function(request,response){
+//   sequelize.query("SELECT * FROM Language").success(function(languages) {
+//     response.send(languages);
+
+//   for (var i=0; i<languages.length; i++){
+//     var bit = languages[i];
+//     label: bit.name,
+//     value:bit.total_count
+//     console.log(i);
+//     });
+//   };
+
+// sequelize.sync();
+
+//   });
+// });
+
+
+//
 
 
 
