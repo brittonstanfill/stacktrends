@@ -1,7 +1,5 @@
 app.controller('stackTrendController', function($scope, $http, $resource){
 
-    $scope.hello = "Hello, World!";
-
 	// var framework_forks = $resource('http\\://localhost\\:3000/api-forks');
 	// framework_forks.get({}, function() {
 
@@ -12,20 +10,18 @@ app.controller('stackTrendController', function($scope, $http, $resource){
 
 // }
 
- var framework_forks = $resource('http://localhost:3000/api-forks');
+  var framework_forks = $resource('http://localhost:3000/api-forks');
+  var forks = framework_forks.query(function() {
+    $scope.framework_forks = forks;
+  });
 
-    var forks = framework_forks.query(function() {
-        $scope.framework_forks = forks;
-        
-        // $scope.apply();
-    });
+// Languages
+
+  var allLanguages = $resource('http://localhost:3000/languages');
+  var languages = allLanguages.query(function(){
+      $scope.allLanguages = languages;
+  });
 
 
-	// $http.defaults.useXDomain = true;
-	// var framework_forks = $resource('http://localhost:3000/api-forks');
- //    $scope.github_framework_forks = framework_forks.query(); 
- //    console.log($scope.github_framework_forks);
-	// framework_forks.query(function() {console.log(tests);});
-	// $scope.framework_forks = framework_forks;
-	// $scope.$apply();
+
 });
