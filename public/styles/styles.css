@@ -8,7 +8,7 @@ h1 {
   padding: 5px 10px;
   margin: 0px 0px;
   font-size: 18px;
-  background: #444;
+  background: #222;
   color: #fff;
   font-weight: normal;
   letter-spacing: 2px; }
@@ -25,28 +25,42 @@ ol {
 
 li {
   border-top: 1px solid #ccc;
-  padding: 0px 10px;
+  padding: 10px 10px 10px 40px;
   margin: 0;
   font-family: helvetica;
   list-style-type: none;
   font-size: 13px; }
   li:first-child {
     border: none; }
+  li:last-child {
+    border-radius: 0px 0px 5px 5px; }
 
 .framework_name {
   font-weight: bold;
   text-transform: uppercase; }
 
-#chart1 svg {
+.bootstrap {
+  background: dodgerblue;
+  color: red; }
+
+.JavaScript {
+  background: white url(javascript.png) 10px center no-repeat;
+  background-size: 22px 25px; }
+
+/*
+#chart1 svg{
   height: 300px;
   min-width: 100px;
   min-height: 100px;
-  background: #fff;
+  background:#fff;
   box-shadow: 0px 0px 8px #333;
-  margin: 10px; }
+  margin:10px;
+}
 
 text {
-  font: 12px sans-serif; }
+  font: 12px sans-serif;
+}
 
 svg {
-  display: block; }
+  display: block;
+}*/

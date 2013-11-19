@@ -6,17 +6,7 @@
 		<script type="text/javascript" src="angular-resource.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript" src="stackTrendController.js"></script>
-	    <script type="text/javascript" src="/charts/d3.v3.js"></script>
-        <script type="text/javascript" src="/charts/nv.d3.min.js"></script>
-        <script src="charts/tooltip.js"></script>
-        <script src="charts/utils.js"></script>
-        <script src="charts/axis.js"></script>
-        <script src="charts/discreteBar.js"></script>
-        <script src="charts/discreteBarChart.js"></script>
-        <script src="charts/chart.js"> </script>
-
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
-        <link rel="stylesheet" type="text/css" href="charts/nv.d3.min.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 
 
@@ -25,20 +15,17 @@
 	<div class="most-forked">
 			<ol>
                 <h1>Forks</h1>
-				<li ng-repeat="fork in framework_forks">
-					<p><span class="framework_name">{{fork.name}}:</span> #{{fork['min(forks_count)']}}</p>
+				<li ng-repeat="fork in framework_forks" class="{{fork.language}}">
+					<span class="framework_name">{{fork.name}}:</span> #{{fork['min(forks_count)']}}
 				</li>
 			</ol>
             <ol>
                 <h1>Languages</h1>
-                <li ng-repeat="language in allLanguages">
-                    <p><span class="framework_name">{{language.name}}:</span> #{{language['min(total_count)']}}</p>
+                <li ng-repeat="language in allLanguages | limitTo: 5">
+                    <p><span class="framework_name">{{language.label}}:</span> #{{language.value}}</p>
                 </li>
             </ol>
 	</div>
 
-    <div id="chart1">
-        <svg></svg>
-    </div>
 </body>
 </html>

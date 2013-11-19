@@ -9,7 +9,7 @@ h1 {
   padding:5px 10px;
   margin:0px 0px;
   font-size:18px;
-  background:#444;
+  background:#222;
   color:#fff;
   font-weight:normal;
   letter-spacing:2px;
@@ -28,13 +28,16 @@ ol {
 
 li {
   border-top:1px solid #ccc;
-  padding: 0px 10px;
+  padding: 10px 10px 10px 40px;
   margin: 0;
   font-family: helvetica;
   list-style-type: none;
   font-size: 13px;
   &:first-child {
     border: none;
+  }
+  &:last-child {
+    border-radius:0px 0px 5px 5px;
   }
 }
 
@@ -43,6 +46,17 @@ li {
   text-transform: uppercase;
 }
 
+
+.bootstrap {
+  background:dodgerblue;
+  color:red;
+}
+
+.JavaScript {
+  background:#fff url(javascript.png) 10px center no-repeat;
+  background-size:22px 25px;
+}
+/*
 #chart1 svg{
   height: 300px;
   min-width: 100px;
@@ -58,4 +72,4 @@ text {
 
 svg {
   display: block;
-}
+}*/
