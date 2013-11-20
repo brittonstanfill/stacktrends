@@ -22,14 +22,16 @@ var dbPassword = null;
 
 var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   host:'localhost',
-  dialect:'mysql'
+  dialect:'mysql',
+  omitNull: true
 });
 
 var Framework = sequelize.define('Framework', {
 	name: Sequelize.STRING,
 	forks_count: Sequelize.INTEGER,
   language: Sequelize.STRING,
-  watchers: Sequelize.INTEGER
+  watchers: Sequelize.INTEGER,
+  homepage: Sequelize.STRING
 },
 {
 	freezeTableName:true
@@ -45,7 +47,8 @@ app.get('/latest', function(req, res){
       name: bit['name'],
       forks_count:bit['forks_count'],
       language:bit['language'],
-      watchers:bit['watchers']
+      watchers:bit['watchers'],
+      homepage:bit['homepage']
     });
   };
 
@@ -126,19 +129,31 @@ app.get('/languagesBar',function(request,response){
   });
 });
 
-// Zen
+// Zen //
 
-app.get('/allLanguagesGraph', function(req, res){
+var ZenTable = sequelize.define('ZenTable', {
+  zenSaying: Sequelize.STRING,
+},
+{
+  freezeTableName:true
+});
 
+app.get('/Zen', function(req, res){
   request("https://api.github.com/zen", function(error, response, body) {
-    var apiResponse = JSON.parse(body);
-    var bit = apiResponse;
-    Zen.create({
-      label: 'Javascript',
-      value:bit['total_count']
+    var apiResponse = (body);
+    ZenTable.create({
+      zenSaying: apiResponse
     });
   });
 
+  sequelize.sync();
+});
+
+app.get('/Zenspire',function(request,response){
+  sequelize.query("SELECT zenSaying FROM ZenTable ORDER BY RAND() LIMIT 1;").success(function(wordsOfWisdom) {
+    response.send(wordsOfWisdom);
+  });
+});
 
 
 app.listen(port);
