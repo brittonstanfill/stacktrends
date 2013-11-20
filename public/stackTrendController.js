@@ -6,7 +6,6 @@ app.controller('stackTrendController', function($scope, $http, $resource){
   });
 
 // languages //
-
   var allLanguages = $resource('http://localhost:3000/languagesBar');
   var languages = allLanguages.query(function(){
       $scope.allLanguages = languages;

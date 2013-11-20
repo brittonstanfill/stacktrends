@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="charts/nv.d3.min.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+#chart1 svg{
+  height: 500px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  margin: 10px;
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+</style>
+<body>
+
+  <div id="chart1">
+    <svg></svg>
+  </div>
+
+<script src="charts/d3.v3.js"></script>
+<script src="charts/nv.d3.min.js"></script>
+<!-- including all the components so I don't have to minify every time I test in development -->
+<script src="charts/tooltip.js"></script>
+<script src="charts/utils.js"></script>
+<script src="charts/axis.js"></script>
+<script src="charts/discreteBar.js"></script>
+<script src="charts/discreteBarChart.js"></script>
+<script src="charts/chart.js"> </script>
+
+</body>
+</html>
