@@ -12,6 +12,10 @@ app.use(function(req, res, next){
   next();
 });
 
+var apiKey = 'b29d16f26b2eabf7940176bc086df4fc';
+var otherKey = "e72cb381c4622a80";
+
+
 app.use(express.static(__dirname + '/public'));
 
 var port = 3000;
@@ -27,19 +31,19 @@ var sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 });
 
 var Framework = sequelize.define('Framework', {
-	name: Sequelize.STRING,
-	forks_count: Sequelize.INTEGER,
+  name: Sequelize.STRING,
+  forks_count: Sequelize.INTEGER,
   language: Sequelize.STRING,
   watchers: Sequelize.INTEGER,
   homepage: Sequelize.STRING
 },
 {
-	freezeTableName:true
+  freezeTableName:true
 });
 
 app.get('/latest', function(req, res){
-	request("https://api.github.com/search/repositories?q=forks:>=5000", function(error, response, body) {
-	var apiResponse = JSON.parse(body);
+  request("https://api.github.com/search/repositories?q=forks:>=5000", function(error, response, body) {
+  var apiResponse = JSON.parse(body);
 
   for (var i=0; i < apiResponse['items'].length; i++){
     var bit = apiResponse['items'][i];
@@ -54,13 +58,13 @@ app.get('/latest', function(req, res){
 
 sequelize.sync();
 
-	});
+  });
 });
 
 app.get('/api-forks',function(request,response){
-	sequelize.query("SELECT name, language, watchers, homepage, min(forks_count),max(forks_count) FROM `Framework` GROUP BY name ORDER BY max(forks_count) DESC").success(function(frameworks) {
-		response.send(frameworks);
-	});
+  sequelize.query("SELECT name, language, watchers, homepage, min(forks_count),max(forks_count) FROM `Framework` GROUP BY name ORDER BY max(forks_count) DESC").success(function(frameworks) {
+    response.send(frameworks);
+  });
 });
 
 var LanguageGraph = sequelize.define('LanguageGraph', {
@@ -128,6 +132,63 @@ app.get('/languagesBar',function(request,response){
     response.send(languages);
   });
 });
+
+
+
+//////////////////////////////////////////////////////
+app.get('/githubMoreLanguages', function(req, res){
+
+  request("https://api.github.com/search/repositories?q=language:Objective-C", function(error, response, body) {
+    var apiResponse = JSON.parse(body);
+    var bit = apiResponse;
+    LanguageGraph.create({
+      label: 'Objective-C',
+      value:bit['total_count']
+    });
+  });
+
+  request("https://api.github.com/search/repositories?q=language:C", function(error, response, body) {
+    var apiResponse = JSON.parse(body);
+    var bit = apiResponse;
+    LanguageGraph.create({
+      label: 'C',
+      value:bit['total_count']
+    });
+  });
+
+  request("https://api.github.com/search/repositories?q=language:rust", function(error, response, body) {
+    var apiResponse = JSON.parse(body);
+    var bit = apiResponse;
+    LanguageGraph.create({
+      label: 'Rust',
+      value:bit['total_count']
+    });
+  });
+
+    request("https://api.github.com/search/repositories?q=language:dart", function(error, response, body) {
+    var apiResponse = JSON.parse(body);
+    var bit = apiResponse;
+    LanguageGraph.create({
+      label: 'Dart',
+      value:bit['total_count']
+    });
+  });
+
+  sequelize.sync();
+
+});
+
+app.get('/languagesBar',function(request,response){
+  sequelize.query("SELECT DISTINCT label, value FROM LanguageGraph GROUP BY label ORDER BY value DESC;").success(function(languages) {
+    response.send(languages);
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 // Zen //
 

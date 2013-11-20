@@ -1,65 +1,111 @@
-body {
-  background: #666;
-  color: #333;
+body, html {
+  background: transparent url(bridge3.jpg) no-repeat center center;
+  background-size: cover;
+  color: #666666;
   font-family: 'Roboto', sans-serif;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  font-weight: 200; }
+
+.header {
+  margin: 10px; }
+
+.logo {
+  border: 1px solid white;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 50px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2); }
+
+.Zen {
+  color: white;
+  font-size: 40px;
+  margin: 10px;
+  font-weight: 100;
+  display: inline; }
 
 a {
   text-decoration: none;
-  color: #333; }
+  color: #666666; }
+
+a:hover {
+  text-decoration: underline; }
 
 h1 {
-  padding: 5px 10px;
+  padding: 5px 20px;
   margin: 0px 0px;
-  font-size: 18px;
-  background: #222;
-  color: #fff;
-  font-weight: normal;
-  letter-spacing: 2px; }
+  font-size: 24px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-weight: 300;
+  letter-spacing: 2px;
+  border: 1px solid white; }
 
 ol {
   padding: 0;
   margin: 10px;
-  background: #efefef;
-  border: 1px solid #ccc;
-  box-shadow: 0px 0px 8px #333;
   display: inline-block;
-  float: left;
-  border-radius: 0px 0px 5px 5px; }
+  float: left; }
 
 li {
+  background: white;
   border-top: 1px solid #ccc;
-  padding: 25px 20px 27px 60px;
+  padding: 8px 40px 15px 20px;
   margin: 0;
-  font-family: helvetica;
   list-style-type: none;
-  font-size: 13px; }
+  font-size: 14px; }
   li:first-child {
     border: none; }
   li:last-child {
     border-radius: 0px 0px 5px 5px; }
+  li:nth-child(odd) {
+    background-color: #f8f8f8; }
+  li:hover {
+    background-color: #f3f3f3;
+    -moz-box-shadow: inset 0 0 2px 1px #ccc;
+    -webkit-box-shadow: inset 0 0 2px 1px #ccc;
+    box-shadow: inset 0 0 3px 1px #ddd; }
 
-.framework_name {
-  font-weight: bold;
-  text-transform: uppercase; }
+.framework-name {
+  display: block;
+  width: 100%; }
 
-.JavaScript {
-  background: url(javascript1.png) 10px center no-repeat;
-  background-size: 50px 50px; }
+.icon {
+  border: 1px solid #666666;
+  color: #666666;
+  border-radius: 3px;
+  display: inline;
+  padding: 3px 6px;
+  position: relative;
+  bottom: 22px;
+  left: 22px;
+  font-size: 12px;
+  font-weight: 200;
+  float: right;
+  letter-spacing: 1px;
+  transition: all 1s;
+  -webkit-transition: all .5s; }
+  .icon:hover {
+    background: #666666;
+    color: #fff; }
 
-.Ruby {
-  background: url(ruby1.png) 15px center no-repeat;
-  background-size: 35px 35px; }
+.JavaScript:hover {
+  background: #f1bf26;
+  border: 1px solid #f1bf26; }
 
-.Php {
-  background: url(php2.png) 10px center no-repeat;
-  background-size: 50px 50px; }
+.Ruby:hover {
+  background: #aa1100;
+  border: 1px solid #aa1100; }
 
-.CSS {
-  background: url(css3.png) 10px center no-repeat;
-  background-size: 50px 50px; }
+.Php:hover {
+  background: #6c7eb7;
+  border: 1px solid #6c7eb7; }
 
-.Zen {
-  color: #fff;
-  font-size: 32px;
-  margin: 10px; }
+.CSS:hover {
+  background: #1572b6;
+  border: 1px solid #1572b6; }
+
+.HTML:hover {
+  background: #e44d26;
+  border: 1px solid #e44d26; }

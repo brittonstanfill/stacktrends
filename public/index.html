@@ -7,20 +7,29 @@
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="stackTrendController.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,200,700' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="stackTrendController">
-  <div class="Zen">{{Zen[0].zenSaying}}</div>
-  <div class="most-forked">
+  <div class="header">
+    <div class="logo">StackTrends</div>
+    <div class="Zen">{{Zen[0].zenSaying}}</div>
+  </div>
+  <div class="most-
+  forked">
     <ol>
       <h1>Highest Forks</h1>
-      <li ng-repeat="fork in framework_forks" class="{{fork.language}}">
-        <a href="{{fork.homepage}}"><span class="framework_name">{{fork.name}}:</span> #{{fork['max(forks_count)']}}</a>
+      <li ng-repeat="fork in framework_forks">
+        <div class="framework-name">
+          <a href="{{fork.homepage}}">{{fork.name}}:</a>  
+        </div>
+           <div class="framework-part">Forks# {{fork['max(forks_count)']}}</div>
+          <div class="framework-part">Stars# {{fork.watchers}}</div>
+          <div class="icon {{fork.language}}">{{fork.language}}</div>
       </li>
     </ol>
     <ol>
-      <h1>Top Languages</h1>
-      <li ng-repeat="language in allLanguages | limitTo: 5">
+      <h1># Projects Using</h1>
+      <li ng-repeat="language in allLanguages | limitTo: 9">
         <span class="framework_name">{{language.label}}:</span> #{{language.value}}
       </li>
     </ol>
