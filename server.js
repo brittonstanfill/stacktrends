@@ -58,7 +58,7 @@ sequelize.sync();
 });
 
 app.get('/api-forks',function(request,response){
-	sequelize.query("SELECT name, language, watchers, min(forks_count),max(forks_count) FROM `Framework` GROUP BY name ORDER BY max(forks_count) DESC").success(function(frameworks) {
+	sequelize.query("SELECT name, language, watchers, homepage, min(forks_count),max(forks_count) FROM `Framework` GROUP BY name ORDER BY max(forks_count) DESC").success(function(frameworks) {
 		response.send(frameworks);
 	});
 });

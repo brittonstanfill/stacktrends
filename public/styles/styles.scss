@@ -5,6 +5,11 @@ body {
   overflow-y:scroll;
 }
 
+a {
+  text-decoration:none;
+  color:#333;
+}
+
 h1 {
   padding:5px 10px;
   margin:0px 0px;
@@ -65,4 +70,10 @@ li {
 .CSS {
   background: url(css3.png) 10px center no-repeat;
   background-size:50px 50px;
+}
+
+.Zen {
+  color:#fff;
+  font-size:32px;
+  margin:10px;
 }
