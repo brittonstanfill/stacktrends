@@ -28,7 +28,7 @@ ol {
 
 li {
   border-top:1px solid #ccc;
-  padding: 10px 10px 10px 40px;
+  padding:25px 20px 27px 60px;
   margin: 0;
   font-family: helvetica;
   list-style-type: none;
@@ -46,30 +46,23 @@ li {
   text-transform: uppercase;
 }
 
-
-.bootstrap {
-  background:dodgerblue;
-  color:red;
-}
-
 .JavaScript {
-  background:#fff url(javascript.png) 10px center no-repeat;
-  background-size:22px 25px;
-}
-/*
-#chart1 svg{
-  height: 300px;
-  min-width: 100px;
-  min-height: 100px;
-  background:#fff;
-  box-shadow: 0px 0px 8px #333;
-  margin:10px;
+  background: url(javascript1.png) 10px center no-repeat;
+  background-size:50px 50px;
 }
 
-text {
-  font: 12px sans-serif;
+.Ruby {
+  background: url(ruby1.png) 15px center no-repeat;
+  background-size:35px 35px;
 }
 
-svg {
-  display: block;
-}*/
+
+.Php {
+  background: url(php2.png) 10px center no-repeat;
+  background-size:50px 50px;
+}
+
+.CSS {
+  background: url(css3.png) 10px center no-repeat;
+  background-size:50px 50px;
+}

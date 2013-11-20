@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html ng-app="stackTrend">
-    <head>
-		<title>StackTrend</title>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-		<script type="text/javascript" src="angular-resource.min.js"></script>
-		<script type="text/javascript" src="app.js"></script>
-		<script type="text/javascript" src="stackTrendController.js"></script>
-        <link rel="stylesheet" type="text/css" href="styles/styles.css">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-
-
-	</head>
+<head>
+  <title>StackTrend</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+  <script type="text/javascript" src="angular-resource.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="stackTrendController.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+</head>
 <body ng-controller="stackTrendController">
-	<div class="most-forked">
-			<ol>
-                <h1>Forks</h1>
-				<li ng-repeat="fork in framework_forks" class="{{fork.language}}">
-					<span class="framework_name">{{fork.name}}:</span> #{{fork['min(forks_count)']}}
-				</li>
-			</ol>
-            <ol>
-                <h1>Languages</h1>
-                <li ng-repeat="language in allLanguages | limitTo: 5">
-                    <p><span class="framework_name">{{language.label}}:</span> #{{language.value}}</p>
-                </li>
-            </ol>
-	</div>
-
+  <div class="most-forked">
+    <ol>
+      <h1>Highest Forks</h1>
+      <li ng-repeat="fork in framework_forks" class="{{fork.language}}">
+        <span class="framework_name">{{fork.name}}:</span> #{{fork['max(forks_count)']}}
+      </li>
+    </ol>
+    <ol>
+      <h1>Top Languages</h1>
+      <li ng-repeat="language in allLanguages | limitTo: 5">
+        <span class="framework_name">{{language.label}}:</span> #{{language.value}}
+      </li>
+    </ol>
+  </div>
 </body>
 </html>

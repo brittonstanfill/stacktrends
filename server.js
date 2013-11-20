@@ -37,7 +37,7 @@ var Framework = sequelize.define('Framework', {
 
 app.get('/latest', function(req, res){
 	request("https://api.github.com/search/repositories?q=forks:>=5000", function(error, response, body) {
-		var apiResponse = JSON.parse(body);
+	var apiResponse = JSON.parse(body);
 
   for (var i=0; i < apiResponse['items'].length; i++){
     var bit = apiResponse['items'][i];
@@ -70,6 +70,7 @@ var LanguageGraph = sequelize.define('LanguageGraph', {
 
 
 app.get('/allLanguagesGraph', function(req, res){
+
   request("https://api.github.com/search/repositories?q=language:javascript", function(error, response, body) {
     var apiResponse = JSON.parse(body);
     var bit = apiResponse;
@@ -124,6 +125,20 @@ app.get('/languagesBar',function(request,response){
     response.send(languages);
   });
 });
+
+// Zen
+
+app.get('/allLanguagesGraph', function(req, res){
+
+  request("https://api.github.com/zen", function(error, response, body) {
+    var apiResponse = JSON.parse(body);
+    var bit = apiResponse;
+    Zen.create({
+      label: 'Javascript',
+      value:bit['total_count']
+    });
+  });
+
 
 
 app.listen(port);
