@@ -12,10 +12,6 @@ app.use(function(req, res, next){
   next();
 });
 
-var apiKey = 'b29d16f26b2eabf7940176bc086df4fc';
-var otherKey = "e72cb381c4622a80";
-
-
 app.use(express.static(__dirname + '/public'));
 
 var port = 3000;
